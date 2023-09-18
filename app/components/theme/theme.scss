@@ -1,9 +1,9 @@
-body[data-theme="dark"] {
+html[data-theme="dark"] {
   --bg-1: #333;
   --color-1: #fff;
 }
 
-body[data-theme="light"] {
+html[data-theme="light"] {
   --bg-1: #f4f4f4;
   --color-1: #333;
 }

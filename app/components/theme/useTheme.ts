@@ -15,7 +15,7 @@ export const useTheme = (defaultTheme?: string) => {
 
   // Theme changer
   useEffect(() => {
-    const target = document.body as HTMLBodyElement;
+    const target = document.querySelector("html") as HTMLHtmlElement;
 
     target.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
