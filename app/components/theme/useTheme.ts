@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 
 export const useTheme = (defaultTheme?: string) => {
   const [theme, setTheme] = useState<string>(() => {
-    let currentTheme = defaultTheme
-      ? defaultTheme
-      : window.matchMedia("(prefers-color-scheme: dark)")
+    if (typeof window === "undefined") return "dark";
+
+    const lsTheme = localStorage.getItem("theme");
+    const userDefaultTheme = window.matchMedia("(prefers-color-scheme: dark)")
       ? "dark"
       : "light";
+    let currentTheme = defaultTheme || lsTheme || userDefaultTheme;
 
     return currentTheme;
   });
@@ -16,15 +18,18 @@ export const useTheme = (defaultTheme?: string) => {
     const target = document.body as HTMLBodyElement;
 
     target.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   // Default setter
   // useEffect(() => {
-  //   let currentTheme = defaultTheme
-  //     ? defaultTheme
-  //     : window.matchMedia("(prefers-color-scheme: dark)")
+  //   const lsTheme = localStorage.getItem("theme");
+  //   const userDefaultTheme = window.matchMedia("(prefers-color-scheme: dark)")
   //     ? "dark"
   //     : "light";
+  //   let currentTheme = defaultTheme || lsTheme || userDefaultTheme;
+
+  //   console.log(lsTheme);
 
   //   setTheme(currentTheme);
   // }, []);

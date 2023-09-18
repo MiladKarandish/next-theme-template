@@ -2,7 +2,7 @@
 import { useTheme } from "./useTheme";
 
 const Theme = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme("light");
 
   return (
     <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
